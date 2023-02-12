@@ -1,6 +1,6 @@
 import faker from "faker"
 
-const Home = () => {
+const Home = ({cart, setCart) => {
 
   const productArry = [...Array(20)].map(() => ({
       id : faker.datatype.uuid(),
@@ -9,10 +9,22 @@ const Home = () => {
       image : faker.random.image(),
   }));
 
+const [products] = useState(productArry);
+  
+
   console.log(productArry);
 
   return (
-    <div>Home</div>
+    <div className="productContainer">
+      {products.map((prod,i) => (
+        <SingleProduct 
+          prod={prod}
+          cart={cart}
+          setCart={setCart}
+          key={prod.id} 
+        />
+      ))};
+    </div>
   )
 }
 
